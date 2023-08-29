@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'RoundIconButton.dart';
+//import 'RoundIconButton.dart';
 
 enum Gender {
   male,
@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
 
       body: Column(children: [
 
-        Padding(padding: EdgeInsets.all(40)),
+        Padding(padding: EdgeInsets.all(20)),
 
         Row(
           children: [
@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
    
-            Padding(padding: EdgeInsets.all(20)),
+            Padding(padding: EdgeInsets.all(40)),
 
             Container(
               height: 100,
@@ -74,6 +74,8 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
+        Padding(padding: EdgeInsets.all(100)),
+        
 
         
 
@@ -82,47 +84,43 @@ class _HomePageState extends State<HomePage> {
           children: [
             Padding(padding: EdgeInsets.all(20)),
             Container(
-              width: 100,
-              height: 100,
+              width: 140,
+              height: 140,
               color: Color.fromARGB(255, 24, 37, 110),
-              child: 
-               Row(
-                 children: [
-                   Column(
+              child: Column(
                       children: [
                         Padding(padding: EdgeInsets.all(10)),
                         Text('WEIGHT', style: TextStyle(color: Colors.white),), 
-                        Text(weight.toString(), style: TextStyle(color: Colors.white),),
-                       
+                        Text(weight.toString(), style: TextStyle(color: Colors.white),), 
                         ],
-                    ),      
-                 ],
-               ),
+                    ),         
               ),
 
               Padding(padding: EdgeInsets.all(20)),
 
               Container(
-              width: 100,
-              height: 100,
+              width: 140,
+              height: 140,
               color: Color.fromARGB(255, 24, 37, 110),
-              child: 
-               Row(
-                 children: [
-                   Column(
+              child: Column(
                       children: [
                         Padding(padding: EdgeInsets.all(10)),
                         Text('AGE', style: TextStyle(color: Colors.white),), 
-                        Text(weight.toString(), style: TextStyle(color: Colors.white),),
-                       
+                        Text(weight.toString(), style: TextStyle(color: Colors.white),),                      
                         ],
-                    ),
-                 ],
-               ),
+                    ),     
               ),
-
           ],
         ),  
+
+        Padding(padding: EdgeInsets.all(20)),
+
+        TextButton(
+          onPressed: () {},
+          child: Text('CALCULATE', style: TextStyle(color: Colors.white),),
+          style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.red)),
+          ),
+          
 
 
       ]),
