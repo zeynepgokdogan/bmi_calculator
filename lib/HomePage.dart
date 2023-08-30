@@ -50,7 +50,12 @@ class _HomePageState extends State<HomePage> {
                 },
                 icon: Icon(Icons.female),
                 label: Text('FEMALE'),
-                //style: ButtonStyle(backgroundColor: Color.fromARGB(255, 24, 37, 110),),
+                style: ButtonStyle(
+                  overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                    (Set<MaterialState> states) {
+                      if (states.contains(MaterialState.pressed))
+                        return Colors.redAccent; //<-- SEE HERE
+                      return null; },),),
               ),
             ),
             Padding(padding: EdgeInsets.all(20)),
@@ -65,7 +70,12 @@ class _HomePageState extends State<HomePage> {
                 },
                 icon: Icon(Icons.male),
                 label: Text('MALE'),
-                //style: ButtonStyle(backgroundColor: Color.fromARGB(255, 24, 37, 110),),
+                style: ButtonStyle(
+                  overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                    (Set<MaterialState> states) {
+                      if (states.contains(MaterialState.pressed))
+                        return Colors.redAccent; //<-- SEE HERE
+                      return null; },),),
               ),
             ),
           ],
