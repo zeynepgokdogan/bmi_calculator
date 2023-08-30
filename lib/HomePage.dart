@@ -1,6 +1,8 @@
-import 'package:flutter/material.dart';
+import 'dart:math';
 
-//import 'RoundIconButton.dart';
+import 'package:bmi_calcutor/age_weight_widget.dart';
+import 'package:bmi_calcutor/height_widget.dart';
+import 'package:flutter/material.dart';
 
 enum Gender {
   male,
@@ -18,28 +20,25 @@ class _HomePageState extends State<HomePage> {
   late Gender selectedGender;
   int weight = 20;
   int age = 20;
+  int height = 150;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 4, 9, 54),
-
       appBar: AppBar(
-          centerTitle: true,
-          title: Text(
-            "BMI Calculator",
-            style: TextStyle(color: Colors.white),
-          ),
-          backgroundColor: Color.fromARGB(255, 24, 37, 110),
-          ),
-
+        centerTitle: true,
+        title: Text(
+          "BMI Calculator",
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Color.fromARGB(255, 24, 37, 110),
+      ),
       body: Column(children: [
-
         Padding(padding: EdgeInsets.all(20)),
-
         Row(
           children: [
-            Padding(padding: EdgeInsets.all(20)),
+            Padding(padding: EdgeInsets.all(35)),
             Container(
               height: 100,
               width: 120,
@@ -54,9 +53,7 @@ class _HomePageState extends State<HomePage> {
                 //style: ButtonStyle(backgroundColor: Color.fromARGB(255, 24, 37, 110),),
               ),
             ),
-   
-            Padding(padding: EdgeInsets.all(40)),
-
+            Padding(padding: EdgeInsets.all(20)),
             Container(
               height: 100,
               width: 120,
@@ -69,60 +66,54 @@ class _HomePageState extends State<HomePage> {
                 icon: Icon(Icons.male),
                 label: Text('MALE'),
                 //style: ButtonStyle(backgroundColor: Color.fromARGB(255, 24, 37, 110),),
-                
               ),
             ),
           ],
         ),
-        Padding(padding: EdgeInsets.all(100)),
-        
-
-        
-
-
+        Padding(padding: EdgeInsets.all(20)),
+        HeightWidget(
+          onChange: (heightVal) {
+            height = heightVal;
+          },
+        ),
+        Padding(padding: EdgeInsets.all(20)),
         Row(
           children: [
-            Padding(padding: EdgeInsets.all(20)),
-            Container(
-              width: 140,
-              height: 140,
-              color: Color.fromARGB(255, 24, 37, 110),
-              child: Column(
-                      children: [
-                        Padding(padding: EdgeInsets.all(10)),
-                        Text('WEIGHT', style: TextStyle(color: Colors.white),), 
-                        Text(weight.toString(), style: TextStyle(color: Colors.white),), 
-                        ],
-                    ),         
-              ),
-
-              Padding(padding: EdgeInsets.all(20)),
-
-              Container(
-              width: 140,
-              height: 140,
-              color: Color.fromARGB(255, 24, 37, 110),
-              child: Column(
-                      children: [
-                        Padding(padding: EdgeInsets.all(10)),
-                        Text('AGE', style: TextStyle(color: Colors.white),), 
-                        Text(weight.toString(), style: TextStyle(color: Colors.white),),                      
-                        ],
-                    ),     
-              ),
+            SizedBox(
+              width: 20,
+            ),
+            AgeWeightWidget(
+                onChange: (ageVal) {
+                  age = ageVal;
+                },
+                title: 'AGE',
+                initValue: 20,
+                min: 0,
+                max: 90),
+            SizedBox(
+              width: 55,
+            ),
+            AgeWeightWidget(
+                onChange: (weightVal) {
+                  weight = weightVal;
+                },
+                title: 'WEIGHT',
+                initValue: 20,
+                min: 0,
+                max: 200)
           ],
-        ),  
-
+        ),
         Padding(padding: EdgeInsets.all(20)),
-
         TextButton(
           onPressed: () {},
-          child: Text('CALCULATE', style: TextStyle(color: Colors.white),),
-          style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.red)),
+          child: Text(
+            'CALCULATE',
+            style: TextStyle(color: Colors.white),
           ),
-          
-
-
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.red)),
+        ),
+        SizedBox(width: 20,)
       ]),
     );
   }
