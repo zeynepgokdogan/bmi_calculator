@@ -1,6 +1,8 @@
 import 'dart:math';
 
+import 'package:bmi_calcutor/ResultPage.dart';
 import 'package:bmi_calcutor/age_weight_widget.dart';
+import 'package:bmi_calcutor/calculate_bmi.dart';
 import 'package:bmi_calcutor/height_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -55,7 +57,10 @@ class _HomePageState extends State<HomePage> {
                     (Set<MaterialState> states) {
                       if (states.contains(MaterialState.pressed))
                         return Colors.redAccent; //<-- SEE HERE
-                      return null; },),),
+                      return null;
+                    },
+                  ),
+                ),
               ),
             ),
             Padding(padding: EdgeInsets.all(20)),
@@ -75,7 +80,10 @@ class _HomePageState extends State<HomePage> {
                     (Set<MaterialState> states) {
                       if (states.contains(MaterialState.pressed))
                         return Colors.redAccent; //<-- SEE HERE
-                      return null; },),),
+                      return null;
+                    },
+                  ),
+                ),
               ),
             ),
           ],
@@ -108,14 +116,23 @@ class _HomePageState extends State<HomePage> {
                   weight = weightVal;
                 },
                 title: 'WEIGHT',
-                initValue: 20,
+                initValue: 50,
                 min: 0,
                 max: 200)
           ],
         ),
         Padding(padding: EdgeInsets.all(20)),
         TextButton(
-          onPressed: () {},
+          onPressed: () {
+            BmiValues calc = BmiValues(height, weight);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context)=>ResultPage(
+                bmiResult: calc.calculateBmi(),
+                resultTxt: calc.getResult(),
+                resultIntp: calc.getInterpretatiton(),
+              )));
+          },
           child: Text(
             'CALCULATE',
             style: TextStyle(color: Colors.white),
@@ -123,7 +140,9 @@ class _HomePageState extends State<HomePage> {
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(Colors.red)),
         ),
-        SizedBox(width: 20,)
+        SizedBox(
+          width: 20,
+        )
       ]),
     );
   }
